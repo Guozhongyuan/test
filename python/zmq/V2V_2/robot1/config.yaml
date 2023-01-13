@@ -1,0 +1,13 @@
+
+id: "robot1"
+
+robots:
+  robot1:
+    id: "robot1"
+    ip: tcp://127.0.0.1:5551"
+  robot2:
+    id: "robot2"
+    ip: tcp://127.0.0.1:5552"
+  robot3:
+    id: "robot3"
+    ip: tcp://127.0.0.1:5553"

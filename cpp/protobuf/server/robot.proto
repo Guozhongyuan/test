@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+// protoc --python_out=. test.proto
+// protoc --cpp_out=. test.proto
+
+message Position2D {
+    double x = 1;
+    double y = 2;
+}
+
+message RobotState {
+    uint32 id = 1;
+    enum Status {
+        INVALID = 0;
+        START_POWEROFF = 1; //上报5帧
+        PROCESS_POWEROFF = 2; //检查起自动驾驶系统、10秒车速、档位、是否有目的地点、epb拉起，关闭系统统拷贝数据
+        CANCLE_POWEROFF = 3;
+        SUCCESS = 4;
+        FAILED = 5;
+    }
+    Status status = 2;
+    
+    // x, y, z, vel, yaw
+    double x = 3;
+    double y = 4;
+    double z = 5;
+    double vel = 6;
+    double yaw = 7;
+
+    // mbr points
+    repeated Position2D points = 8;
+
+}

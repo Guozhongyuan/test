@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+// protoc --python_out=. test.proto
+// protoc --cpp_out=. test.proto
+
+
+message Response {
+    enum Status {
+        INVALID = 0;
+        START_POWEROFF = 1; //上报5帧
+        PROCESS_POWEROFF = 2; //检查起自动驾驶系统、10秒车速、档位、是否有目的地点、epb拉起，关闭系统统拷贝数据
+        CANCLE_POWEROFF = 3;
+        SUCCESS = 4;
+        FAILED = 5;
+    }
+    Status status = 1;
+    uint32 wait_time = 2; //时间秒失败等待600s ；成功120s
+    enum FailReason {
+        NONE = 0;
+        GEAR_STATE = 1;   //档位是否正确
+        SPEED = 2;        //车速是否为0
+        EPB = 3;          // EPB是否拉起
+        DESTINATIONS = 4; //目的地是否为空
+        AUTO_MODE = 5;    //未起自动驾驶系统
+    }
+    FailReason fail_reson = 3;
+    bool door_opened = 4;
+}
